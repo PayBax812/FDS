@@ -1,0 +1,85 @@
+import pandas as pd
+df = pd.read_csv("50Startups.csv")
+df.head()
+
+df.info()
+
+df.State.unique()
+
+from sklearn.preprocessing import LabelEncoder
+le=LabelEncoder()
+
+df.State=le.fit_transform(df.State)
+df.State.head()
+
+df.corr()
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.heatmap(df)
+
+sns.heatmap(df.corr())
+
+sns.heatmap(df.corr(),annot=True)
+
+sns.pairplot(df)
+
+plt.boxplot(df["Marketing Spend"],vert=False)
+plt.show()
+
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+
+df.drop(columns="Administration")
+df.drop(columns="Administration", inplace=True)
+
+x = df.iloc[:,:-1]
+x.head()
+
+y = df.Profit
+y.head()
+
+x=sc.fit_transform(x)
+x
+
+from sklearn.model_selection import train_test_split
+xtrain,xtest,ytrain,ytest = train_test_split(x,y,test_size=0.2,random_state=0)
+xtrain
+
+from sklearn.model_selection import train_test_split
+xtrain,xtest,ytrain,ytest = train_test_split(x,y,test_size=0.2,random_state=0)
+xtrain
+
+pred = lr.predict(xtrain)
+pred
+
+from sklearn.metrics import r2_score
+print(r2_score(ytrain,pred))
+
+print("Coeficient",lr.coef_)
+print("Intercept",lr.intercept_)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
